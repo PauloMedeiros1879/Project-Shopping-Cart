@@ -8,7 +8,6 @@ try {
   return e;
 }
 };
-console.log(fetchProducts('computador'));
 
 if (typeof module !== 'undefined') {
   module.exports = {
