@@ -1,12 +1,8 @@
-const fetchItem = async (id) => {
+const fetchItem = (id) => {
   const url = `https://api.mercadolibre.com/items/${id}`;
-  try {
-    const fetchId = await fetch(url);
-    const data = await fetchId.json();
-    return data.id;
-  } catch (e) {
-    return e;
-  }
+  return fetch(url)
+    .then((response) => response.json())
+    .catch((e) => e);
 };
 console.log(fetchItem('MLB1341706310'));
 
