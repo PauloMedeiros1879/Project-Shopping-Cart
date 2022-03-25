@@ -69,6 +69,9 @@ const listItens = async () => {
   });
 };
 
+saveCartItems();
+getSavedCartItems();
+
 const cleanCart = () => {
   olList.innerHTML = '';
 };
