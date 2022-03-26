@@ -1,5 +1,5 @@
-const olList = document.querySelector('.cart__items'); // Requisito 2
-const btnClean = document.querySelector('.empty-cart'); // Requisito 6
+const olList = document.querySelector('.cart__items');
+const btnClean = document.querySelector('.empty-cart');
 
 function createProductImageElement(imageSource) {
   const img = document.createElement('img');
@@ -17,6 +17,7 @@ function createCustomElement(element, className, innerText) {
 
 function cartItemClickListener(event) {
   event.target.remove();
+  saveCartItems(olList.innerHTML);
 }
 
 function createCartItemElement({ sku, name, salePrice }) {
@@ -24,6 +25,8 @@ function createCartItemElement({ sku, name, salePrice }) {
   li.className = 'cart__item';
   li.innerText = `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice}`;
   li.addEventListener('click', cartItemClickListener);
+  olList.appendChild(li);
+  saveCartItems(olList.innerHTML);
   return li;
 }
 
@@ -69,14 +72,18 @@ const listItens = async () => {
   });
 };
 
-saveCartItems();
-getSavedCartItems();
+ const getSave = () => {
+   olList.innerHTML = getSavedCartItems();
+ };
+olList.addEventListener('click', cartItemClickListener);
 
 const cleanCart = () => {
   olList.innerHTML = '';
+  saveCartItems(olList.innerHTML);
 };
 btnClean.addEventListener('click', (cleanCart));
 
 window.onload = async () => {
   await listItens();
+  getSave();
  };
