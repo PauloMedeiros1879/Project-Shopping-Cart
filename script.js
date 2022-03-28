@@ -68,7 +68,7 @@ const listItens = async () => {
     name: item.title,
     image: item.thumbnail,
     };
-      section.appendChild(createProductItemElement(itens));
+    section.appendChild(createProductItemElement(itens));
   });
 };
 
