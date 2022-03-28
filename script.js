@@ -60,9 +60,9 @@ function getSkuFromProductItem(item) {
 }
 
 const listItens = async () => {
-  const results = await fetchProducts('computador');
+  const infoProducts = await fetchProducts('computador');
   const section = document.querySelector('.items');
-  results.forEach((item) => {
+  infoProducts.results.forEach((item) => {
     const itens = {
     sku: item.id,
     name: item.title,
