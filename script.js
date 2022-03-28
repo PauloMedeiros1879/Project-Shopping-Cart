@@ -40,6 +40,19 @@ const addCart = async (event) => {
   saveCartItems(olList.innerHTML);
 };
 
+const addScreenLoad = () => {
+  const cartScreen = document.querySelector('.cart');
+  const loadTxt = document.createElement('p');
+  loadTxt.className = 'loading';
+  loadTxt.innerHTML = 'carregando...';
+  cartScreen.appendChild(loadTxt);
+};
+
+const removeScreenLoad = async () => {
+  const rmLoad = document.querySelector('.loading');
+  rmLoad.remove();
+};
+
 function createProductItemElement({ sku, name, image }) {
   const section = document.createElement('section');
   section.className = 'item';
@@ -50,6 +63,7 @@ function createProductItemElement({ sku, name, image }) {
 
   const btnAddCart = createCustomElement('button', 'item__add', 'Adicionar ao carrinho!');
   btnAddCart.addEventListener('click', () => addCart(sku));
+  removeScreenLoad();
   section.appendChild(btnAddCart);
 
   return section;
@@ -60,6 +74,7 @@ function getSkuFromProductItem(item) {
 }
 
 const listItens = async () => {
+  addScreenLoad();
   const infoProducts = await fetchProducts('computador');
   const section = document.querySelector('.items');
   infoProducts.results.forEach((item) => {
