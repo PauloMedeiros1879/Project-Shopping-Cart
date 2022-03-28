@@ -26,7 +26,6 @@ function createCartItemElement({ sku, name, salePrice }) {
   li.innerText = `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice}`;
   li.addEventListener('click', cartItemClickListener);
   olList.appendChild(li);
-  saveCartItems(olList.innerHTML);
   return li;
 }
 
@@ -38,6 +37,7 @@ const addCart = async (event) => {
     salePrice: getItem.price,
   });
   olList.appendChild(result);
+  saveCartItems(olList.innerHTML);
 };
 
 function createProductItemElement({ sku, name, image }) {

@@ -3,6 +3,8 @@ const { fetchProducts } = require('../helpers/fetchProducts');
 const fetchSimulator = require('../mocks/fetchSimulator');
 const computadorSearch = require('../mocks/search');
 
+window.fetch = jest.fn(fetchSimulator);
+
 describe('1 - Teste a função fecthProducts', () => {
   it('1º - Verifica se fetchProducts é uma função', () => {
     expect.assertions(1);
