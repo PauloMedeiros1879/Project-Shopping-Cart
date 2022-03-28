@@ -105,5 +105,4 @@ btnClean.addEventListener('click', (cleanCart));
 window.onload = async () => {
   await listItens();
   getSave();
-  sumValues();
  };
