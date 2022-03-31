@@ -1,6 +1,6 @@
 const olList = document.querySelector('.cart__items');
 const btnClean = document.querySelector('.empty-cart');
-// const totalPrice = document.querySelector('.total-price');
+const totalPrice = document.querySelector('.total-price');
 
 function createProductImageElement(imageSource) {
   const img = document.createElement('img');
@@ -16,13 +16,24 @@ function createCustomElement(element, className, innerText) {
   return e;
 }
 
-// const sumValues = () => {
-//   let price = 0;
-// };
+// Como tive bastante dificuldade neste requisito, optei por comentar cada linha para me situar também.
+const sumValues = async () => {
+  let price = 0;
+  const list = await getSavedCartItems(); // Aqui retorna string;
+  const priceOverral = list.split('$'); // Aqui separa;
+  priceOverral.shift(); // Aqui remove o item 0;
+  
+  priceOverral.forEach((element) => { // Aqui percorre a array;
+    price += parseFloat(element.substring(0, element.indexOf('<')));
+    // Aqui o parseFloat converte, em seguida, o substring retorna partes da string, e usei o indexOf para definir a posição final da string, para que o retorno fosse apenas numeros;
+  });
+  totalPrice.innerText = price;
+};
 
 function cartItemClickListener(event) {
   event.target.remove();
   saveCartItems(olList.innerHTML);
+  sumValues();
 }
 
 function createCartItemElement({ sku, name, salePrice }) {
@@ -43,6 +54,7 @@ const addCart = async (event) => {
   });
   olList.appendChild(result);
   saveCartItems(olList.innerHTML);
+  sumValues();
 };
 
 const addScreenLoad = () => {
@@ -69,6 +81,7 @@ function createProductItemElement({ sku, name, image }) {
   const btnAddCart = createCustomElement('button', 'item__add', 'Adicionar ao carrinho!');
   btnAddCart.addEventListener('click', () => addCart(sku));
   section.appendChild(btnAddCart);
+
   return section;
 }
 
@@ -99,10 +112,12 @@ olList.addEventListener('click', cartItemClickListener);
 const cleanCart = () => {
   olList.innerHTML = '';
   saveCartItems(olList.innerHTML);
+  sumValues();
 };
 btnClean.addEventListener('click', (cleanCart));
 
-window.onload = async () => {
-  await listItens();
+window.onload = () => {
+  listItens();
   getSave();
+  sumValues();
  };
