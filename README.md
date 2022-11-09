@@ -3,10 +3,10 @@
 
 ## :man_technologist: Habilidades desenvolvidas
 
-Fazer requisições a uma API (Application Programming Interface) do Mercado Livre;
-Utilizar os seus conhecimentos sobre JavaScript, CSS e HTML;
-Trabalhar com funções assíncronas;
-Implementar testes unitários;
+* Fazer requisições a uma API (Application Programming Interface) do Mercado Livre;
+* Utilizar os seus conhecimentos sobre JavaScript, CSS e HTML;
+* Trabalhar com funções assíncronas;
+* Implementar testes unitários;
 
 ## :hammer_and_wrench: Ferramentas Utilizadas
 
@@ -20,8 +20,12 @@ Clone o repositório em uma pasta de preferência
 ```
 git@github.com:PauloMedeiros1879/Project-Shopping-Cart.git
 ```
-
+Entre na pasta que você acabou de clonar, e instale as dependencias
 ```
-Run Code no VSCode ou Alt+Ctrl+N
+npm install
+```
+Para rodar o projeto no navegador, basta utilizar o codigo abaixo
+```
+npm start
 ```
 
